@@ -1,0 +1,93 @@
+/* font-family: "Changa", sans-serif; titolo
+font-family: "Comfortaa", sans-serif; */
+
+
+:root{
+    --or: rgb(255, 134, 5);
+    --b: rgb(23,23,23);
+    --w:rgb(233,233,233);
+}
+
+body{
+    font-family: "Comfortaa", sans-serif;
+}
+
+.text-or{
+    color: var(--or)!important;
+}
+
+.text-w{
+    color: var(--w);
+}
+
+.text-b{
+    color: var(--b) !important;
+}
+
+.bg-or{
+    background-color: var(--or);
+}
+
+.bg-b{
+    background-color: var(--b);
+}
+
+.bg-w{
+    background-color: var(--w);
+}
+
+.logo{
+    height: 60px;
+    width: 120px;
+}
+
+.navbar{
+    transition: 0.4s;
+    border-bottom: 5px solid var(--or);
+}
+
+.marginNav{
+    margin-top: 86px;
+}
+
+
+h1,h2,h3,h4,h5,.h1,.h2,.h3,.h4,.h5{
+font-family: "Changa", sans-serif; 
+}
+
+.imgHeader{
+    background-image: url(./media/ecommerce.png);
+    height: 60vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.carosello{
+    height: 60vh;
+}
+
+.cardCustom{
+    width: 50vw;
+    height: 50vh;
+    border-radius: 15px;
+}
+
+.imgCard{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+}
+
+:target:before {
+    content: "";
+    display: block;
+    height: 100px;
+    margin: -3.125rem 0 0;
+}
+
+.footerContatti{
+    background-color: #262626;
+    
+}
