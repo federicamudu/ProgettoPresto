@@ -52,7 +52,7 @@ body{
 
 
 h1,h2,h3,h4,h5,.h1,.h2,.h3,.h4,.h5{
-font-family: "Changa", sans-serif; 
+    font-family: "Changa", sans-serif; 
 }
 
 .imgHeader{
@@ -65,19 +65,18 @@ font-family: "Changa", sans-serif;
 }
 .carosello{
     height: 60vh;
+    margin-top: 20px;
 }
 
 .cardCustom{
     width: 50vw;
     height: 50vh;
-    border-radius: 15px;
 }
 
 .imgCard{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 15px;
 }
 
 :target:before {
@@ -90,4 +89,40 @@ font-family: "Changa", sans-serif;
 .footerContatti{
     background-color: #262626;
     
+}
+.reviewCard{
+    width: 80%;
+    height: 100%;
+    border: 2px solid var(--or);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+.number{
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
 }

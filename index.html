@@ -13,6 +13,11 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -57,8 +62,8 @@
     <!-- fine header -->
     <!-- inizio card prodotti dentro carosello -->
     <div class="container-fluid ">
-        <div class="row carosello">
-            <div class="col-12 d-flex justify-content-center">
+        <div class="row carosello justify-content-around">
+            <div class="col-4">
                 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                     <a id="annunciTarget" name="annunci"></a>
                     <div class="carousel-inner pagCarosello">
@@ -74,10 +79,60 @@
                     </button>
                 </div>
             </div>
+            <div class="col-5 d-flex flex-column justify-content-evenly">
+                <h3>
+                    Vuoi vendere un articolo?
+                </h3>
+                <div class="input-group flex-nowrap dropdown">
+                    <select id="inputCategoria" class="input-group-text form-select">
+                        <option selected>Seleziona categoria</option>
+                        <option value="pc">Pc</option>
+                        <option value="telefonia">Telefonia</option>
+                        <option value="mobilità">Mobilità</option>
+                        <option value="arredo">Arredo</option>
+                        <option value="gaming">Gaming</option>
+                    </select>
+                    <input id="inputTitoloArticolo" type="text" class="form-control" placeholder="Scrivi qui il titolo" aria-describedby="addon-wrapping">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="addon-wrapping">Prezzo</span>
+                    <input id="inputPrezzo" type="number" class="form-control" placeholder="Scrivi qui..." aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="addContactBtn">Aggiungi</button>
+                </div>
+            </div>
         </div>
     </div>
     
-    
+
+    <!-- recensioni -->
+    <div class="container my-5">
+        <div class="row text-center">
+            <div class="col-12">
+                <h2>Le nostre recensioni</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="col-6 text-center d-flex flex-column justify-content-evenly align-items-center">
+                <h2>I nostri numeri</h2>
+                <div>
+                <p class="lead"><span class="number" id="firstNumber">0</span> prodotti venduti</p>
+                <p class="lead"><span class="number" id="secondNumber">0</span> clienti soddisfatti</p>
+                <p class="lead"><span class="number" id="thirdNumber">0</span> recensioni ricevute</p></div>
+            </div>
+        </div>
+    </div>
+
     
     
     <!-- fine sezione carosello -->
@@ -181,6 +236,7 @@
     
     <!-- fine footer contatti -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
