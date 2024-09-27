@@ -13,6 +13,18 @@ let swiperWrapper = document.querySelector('.swiper-wrapper');
 let firstNumber = document.querySelector('#firstNumber');
 let secondNumber = document.querySelector('#secondNumber');
 let thirdNumber = document.querySelector('#thirdNumber');
+let btnLoginNav = document.querySelector('.btnLoginNav')
+
+
+
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 let products = {
     contacts : [
@@ -209,8 +221,7 @@ reviews.forEach((review) => {
             <p>${review.description}</p>
             <div id='starWrapper' class='d-flex'>
             ${createStar(review.value)}
-        </div>
-        
+        </div>        
         `;
     swiperWrapper.appendChild(div);
 })
@@ -256,3 +267,4 @@ var swiper = new Swiper(".mySwiper", {
         el: ".swiper-pagination",
     },
 });
+
