@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Presto.it</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
                         <a href="#" class="nav-link text-w" aria-current="page">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#annunci" class="nav-link text-w">Annunci</a>
+                        <a href="./annunci.html" target="_blank" class="nav-link text-w">Annunci</a>
                     </li>
                     <li class="nav-item">
                         <a href="#contatti" class="nav-link text-w">Contatti</a>
@@ -61,44 +61,31 @@
     
     <!-- fine header -->
     <!-- inizio card prodotti dentro carosello -->
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row carosello justify-content-around">
-            <div class="col-4">
-                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                    <a id="annunciTarget" name="annunci"></a>
-                    <div class="carousel-inner pagCarosello">
-                        
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-5 d-flex flex-column justify-content-evenly">
-                <h3>
+            <div class="col-8 d-flex flex-column justify-content-center text-w">
+                <div id="boxSales" class="d-flex flex-column justify-content-center">
+                    <h3 class="text-center">
                     Vuoi vendere un articolo?
-                </h3>
-                <div class="input-group flex-nowrap dropdown">
-                    <select id="inputCategoria" class="input-group-text form-select">
-                        <option selected>Seleziona categoria</option>
-                        <option value="pc">Pc</option>
-                        <option value="telefonia">Telefonia</option>
-                        <option value="mobilità">Mobilità</option>
-                        <option value="arredo">Arredo</option>
-                        <option value="gaming">Gaming</option>
-                    </select>
-                    <input id="inputTitoloArticolo" type="text" class="form-control" placeholder="Scrivi qui il titolo" aria-describedby="addon-wrapping">
+                    </h3>
+                    <div class="input-group flex-nowrap dropdown">
+                        <select id="inputCategoria" class="input-group-text form-select">
+                            <option selected>Seleziona categoria</option>
+                            <option value="pc">Pc</option>
+                            <option value="telefonia">Telefonia</option>
+                            <option value="mobilità">Mobilità</option>
+                            <option value="arredo">Arredo</option>
+                            <option value="gaming">Gaming</option>
+                        </select>
+                        <input id="inputTitoloArticolo" type="text" class="form-control" placeholder="Scrivi qui il titolo" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="addon-wrapping">Prezzo</span>
+                        <input id="inputPrezzo" type="number" class="form-control" placeholder="Scrivi qui..." aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="addContactBtn">Aggiungi</button>
+                    </div>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="addon-wrapping">Prezzo</span>
-                    <input id="inputPrezzo" type="number" class="form-control" placeholder="Scrivi qui..." aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="addContactBtn">Aggiungi</button>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -136,7 +123,6 @@
         
         
         <!-- fine sezione carosello -->
-        <div style="height: 2000px;"></div>
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display='none'"
             class="close" title="Close Modal">&times;</span>

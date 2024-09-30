@@ -130,127 +130,92 @@ window.addEventListener('scroll',()=>{
     }
 })
 
-let confirm = false
-addContactBtn.addEventListener('click', () => {
+
+
+
+
+
+fetch('./annunci.json').then((response)=> response.json()).then((data)=>{
+    let radioWrapper = document.querySelector('#radioWrapper')
+    let cardsWrapper = document.querySelector('#cardsWrapper')
+    let numberPrice = document.querySelector('#numberPrice')
+    let inputRange = document.querySelector('#inputRange')
+    let wordInput = document.querySelector('#wordInput')
     
-    
-    if (inputTitoloArticolo.value != '' && inputCategoria.value != '' && inputPrezzo.value !='') {
-        confirm = true;
-        products.addProduct(inputTitoloArticolo.value, inputCategoria.value, inputPrezzo.value);
-        inputTitoloArticolo=''
-        inputCategoria=''
-        inputPrezzo=''
-        
-    } else {
-        alert('Compila tutti i campi')
+    function setRadios() {
+        let categories = data.map((annuncio)=>annuncio.category)
+        // let uniqueCategories = []
+        // categories.forEach((category)=>{
+        //     if(!uniqueCategories.includes(category)){
+        //         uniqueCategories.push(category)
+        //     }
+        // })
+        let uniqueCategories = Array.from(new Set(categories)).sort()
+
+        uniqueCategories.forEach((el)=>{
+            let div = document.createElement('div')
+            div.classList.add('form-check')
+            div.innerHTML=`
+                                <input class="form-check-input" type="radio" name="categories" id="${el}">
+                                <label class="form-check-label" for="${el}">
+                                ${el}
+                                </label>
+            `
+            radioWrapper.appendChild(div)
+        })
     }
-})
-
-
-function createInterval(finalNumber, total, time) {
-    let counter = 0;
-    let interval = setInterval(() => {
-        if (counter < total) {
-            counter++;
-            finalNumber.innerHTML = counter;
-        } else {
-            clearInterval(interval)
-        }
+    function showCards(array) {
+        cardsWrapper.innerHTML=''
+        array.forEach((el)=>{
+            let div = document.createElement('div')
+            div.classList.add('ann-card','text-center')
+            div.innerHTML=`
+                    <p class="h3">${el.name}</p>
+                    <p>${el.category}</p>
+                    <p>${el.price} €</p>
+            `
+            cardsWrapper.appendChild(div)
+        })
+    }
+    setRadios()
+    let radios = document.querySelectorAll('.form-check-input')
+    showCards(data)
+    function filterByCategory() {
+        let checked = Array.from(radios).find((el)=>el.checked)
+        let categoria = checked.id
+        let filtered = data.filter((el)=>el.category==categoria)
         
-    }, time)
-}
-
-
-let check = true;
-let observer = new IntersectionObserver((entries) => {
-    entries.forEach((el) => {
-        if (el.isIntersecting && check == true) {
-            createInterval(firstNumber, 600, 10);
-            createInterval(secondNumber, 80, 70);
-            createInterval(thirdNumber, 10, 600);
-            check = false;
-            
-            setTimeout(() => {
-                check = true;
-            }, 6000)
-            
+        if(categoria=='All'){
+            showCards(data)
+        }else{
+            showCards(filtered)
         }
+    }
+    radios.forEach((el)=>{
+        el.addEventListener('click',()=>{filterByCategory()})
+    })
+    function setInputPrice() {
+        let prices = data.map((el)=> +el.price) //per cambiare da str a num basta mettere un + davanti
+        let maxPrice = Math.ceil( Math.max(...prices))
+        inputRange.max = maxPrice
+        inputRange.value = maxPrice
+        numberPrice.innerHTML=`${maxPrice} €`
+    }
+    setInputPrice()
+    function filterByPrice(){
+        let filtered = data.filter((el)=>+el.price <= +inputRange.value)
+        showCards(filtered)
+    }
+    inputRange.addEventListener('input',()=>{
+        filterByPrice()
+        numberPrice.innerHTML =`${inputRange.value}€` 
+    })
+    function filterByWord(word) {
+        let filtered = data.filter((el)=> el.name.toLowerCase().includes(word.toLowerCase()))
+        showCards(filtered)
+    }
+    
+    wordInput.addEventListener('input',()=>{
+        filterByWord(wordInput.value)
     })
 })
-
-observer.observe(thirdNumber);
-
-
-
-
-let reviews = [
-    { name: 'Gennaro', description: 'sito bellissimo', value: 5 },
-    { name: 'Alessandro', description: 'sito pessimo', value: 1 },
-    { name: 'Michele', description: 'sito incredibile e bravi tutti',  value: 5 },
-    { name: 'Federica', description: 'non mi piacciono i colori',  value: 2 },
-    { name: 'Francesca', description: 'si poteva fare di meglio',  value: 3 },
-    { name: 'Andrea', description: 'Hanno riparato il mio telefono, ma non sono ancora riuscito a ottenere un appuntamento su Tinder.',  value: 5 },
-    { name: 'Alessio', description: 'Personale molto gentile e qualificato, spiegano tutto nel dettaglio.',  value: 5},
-    { name: 'Roberta', description: 'Ho acquistato un articolo che è arrivato rotto.',  value:  1},
-    { name: 'Angelo', description: 'Nonostante un piccolo inconveniente (non risultava l\'ordine nella mia area personale) la gestione e la consegna sono stati super rapidi.',  value:  5},
-    { name: 'Matteo', description: 'Dopo un anno di utilizzo le padelle hanno perso completamente l\'antiaderenza, nonostante oleatura, fiamma bassa e no lavastoviglie.',  value:  2},
-    
-]
-
-
-reviews.forEach((review) => {
-    let div = document.createElement('div');
-    div.classList.add('swiper-slide', 'd-flex', 'justify-content-center');
-    div.innerHTML = `
-        <div class="reviewCard">
-            <p class="lead">${review.name}</p>
-            <p>${review.description}</p>
-            <div id='starWrapper' class='d-flex'>
-            ${createStar(review.value)}
-        </div>        
-        `;
-    swiperWrapper.appendChild(div);
-})
-
-
-
-
-
-function createStar(stars) {
-    
-    let finalstars = '';
-    
-    for (let i = 1; i <= stars ; i++) {
-        finalstars += `<i class="bi bi-star-fill" style="color: #FFD43B;"></i>`
-        
-    }
-    
-    
-    for (let i = 0; i < 5-stars ; i++) {
-        finalstars += `<i class="bi bi-star" style="color: #FFD43B;"></i>`
-    }
-    
-    return finalstars;
-}
-
-
-
-
-var swiper = new Swiper(".mySwiper", {
-    effect: "coverflow",
-    loop: true,
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 3,
-    coverflowEffect: {
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-    },
-});
-
